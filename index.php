@@ -70,7 +70,7 @@
 										</div>	
 										 <h4><?php echo $row["name"];  ?></h4>
 										 <p><?php echo 'Kes '. $row["price"];  ?></p>
-										  <a name="" id="" class="btn btn-primary" href="#" role="button">Buy</a>
+										  <button onclick="addToCart(this.id)" id="<?php echo $row["id"];  ?>" class="btn btn-primary"  >Add to Cart <i class="fas fa-cart-plus"></i></button>
 										<!-- <p>
 											inappropriate behavior is often laughed off as “boys will be.
 										</p> -->

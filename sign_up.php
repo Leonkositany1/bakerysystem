@@ -41,13 +41,13 @@ session_start();
         }
 
         if(empty($error)){
-          $e_password = sha1($conn);
-          $insert = mysqli_query($dbconnect,"INSERT INTO `users` (`email`,`password`) VALUES ('$email','$e_password')");
+          $e_password = sha1($password);
+          $insert = mysqli_query($conn,"INSERT INTO `users` (`email`,`password`) VALUES ('$email','$e_password')");
           if($insert){
               global $msg;
               $msg .="Account created";
               $_SESSION['email'] = $email;
-              header("location:first.php");
+              header("location:index.php");
           }else{
               global $error;
               $error .= "Unable to create account";
