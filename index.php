@@ -17,8 +17,7 @@
 					</div>
 				</div>
 			</section>
-			<!-- End banner Area -->
-
+			<!-- End banner Area -->	 
 			<!-- Start home-about Area -->
 			<section class="home-about-area section-gap">
 				<div class="container">
@@ -68,9 +67,10 @@
 										<div class="thumb">
 											<img class="img-fluid" src="img/c1.jpg" alt="">
 										</div>	
-										 <h4><?php echo $row["name"];  ?></h4>
+										 <h4><?php $name = $row["name"]; echo $name; ?></h4>
 										 <p><?php echo 'Kes '. $row["price"];  ?></p>
-										  <button onclick="addToCart(this.id)" id="<?php echo $row["id"];  ?>" class="btn btn-primary"  >Add to Cart <i class="fas fa-cart-plus"></i></button>
+
+										  <button onclick="addToCart(this.id,'<?php echo $name; ?>')" id="<?php echo $row["id"];  ?>" class="btn btn-primary"  >Add to Cart <i class="fas fa-cart-plus"></i></button>
 										<!-- <p>
 											inappropriate behavior is often laughed off as “boys will be.
 										</p> -->
@@ -84,19 +84,7 @@
 							}
 						
 						mysqli_close($conn);
-						?>
-
-						<!-- <div class="col-lg-3 col-md-6">
-							<div class="single-cat-item">
-								<div class="thumb">
-									<img class="img-fluid" src="img/c1.jpg" alt="">
-								</div>	
-								<a href="#"><h4>Pizza</h4></a>
-								<p>
-									inappropriate behavior is often laughed off as “boys will be.
-								</p>
-							</div>
-						</div> -->			 																		
+						?>	 																		
 					 
 					</div>
 				</div>	
