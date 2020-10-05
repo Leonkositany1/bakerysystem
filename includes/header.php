@@ -32,6 +32,7 @@
 			<link rel="stylesheet" href="css/jquery-ui.css">			
 			<link rel="stylesheet" href="css/owl.carousel.css">
 			<link rel="stylesheet" href="css/main.css">
+		<script src="https://kit.fontawesome.com/824bc4e2a2.js" crossorigin="anonymous"></script>
 		</head>
 		<body>	
 			  <header id="header" id="home">
@@ -70,6 +71,7 @@
 							  <li><a href="team.php">Team</a></li>						 		          	          
 							 						  			          	          
 							  <li><a href="contact.php">Contact</a></li>
+							  <li><a href="checkout.php"><i class="fas fa-shopping-cart fa-2x text-success"></i></a></li>
 							</ul>
 						</nav><!-- #nav-menu-container -->		
 			    	</div>
