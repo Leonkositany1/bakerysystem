@@ -44,7 +44,7 @@
 								<div class="col-lg-9">
 									<a href="#"><h4>Pizza Americano</h4></a>
 									<p>
-										Usage of the Internet is becoming more common due to rapid advance. Usage of the Internet is becoming more common due to rapid advance.
+										
 									</p>
 								</div>
 								<div class="col-lg-3 flex-row d-flex price-size">
@@ -66,7 +66,7 @@
 								<div class="col-lg-9">
 									<a href="#"><h4>Pizza Tunisia</h4></a>
 									<p>
-										Usage of the Internet is becoming more common due to rapid advance. Usage of the Internet is becoming more common due to rapid advance.
+										
 									</p>
 								</div>
 								<div class="col-lg-3 flex-row d-flex price-size">
@@ -88,7 +88,7 @@
 								<div class="col-lg-9">
 									<a href="#"><h4>Beef lovers Pizza</h4></a>
 									<p>
-										Usage of the Internet is becoming more common due to rapid advance. Usage of the Internet is becoming more common due to rapid advance.
+										
 									</p>
 								</div>
 								<div class="col-lg-3 flex-row d-flex price-size">
@@ -110,7 +110,7 @@
 								<div class="col-lg-9">
 									<a href="#"><h4>Chicken lovers Pizza</h4></a>
 									<p>
-										Usage of the Internet is becoming more common due to rapid advance. Usage of the Internet is becoming more common due to rapid advance.
+										
 									</p>
 								</div>
 								<div class="col-lg-3 flex-row d-flex price-size">
@@ -132,7 +132,7 @@
 								<div class="col-lg-9">
 									<a href="#"><h4>Meatball Pizza</h4></a>
 									<p>
-										Usage of the Internet is becoming more common due to rapid advance. Usage of the Internet is becoming more common due to rapid advance.
+									
 									</p>
 								</div>
 								<div class="col-lg-3 flex-row d-flex price-size">
@@ -154,7 +154,7 @@
 								<div class="col-lg-9">
 									<a href="#"><h4>Bakery special Pizza</h4></a>
 									<p>
-										Usage of the Internet is becoming more common due to rapid advance. Usage of the Internet is becoming more common due to rapid advance.
+										
 									</p>
 								</div>
 								<div class="col-lg-3 flex-row d-flex price-size">
@@ -176,7 +176,7 @@
 								<div class="col-lg-9">
 									<a href="#"><h4>Pizza Alfredo</h4></a>
 									<p>
-										Usage of the Internet is becoming more common due to rapid advance. Usage of the Internet is becoming more common due to rapid advance.
+										
 									</p>
 								</div>
 								<div class="col-lg-3 flex-row d-flex price-size">
