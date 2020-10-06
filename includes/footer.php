@@ -63,8 +63,13 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 			<script src="js/mail-script.js"></script>	
 			<script src="js/main.js"></script>	
 			<script>
-				 function addToCart(product_id){
+				 function addToCart(product_id,prod_name){ 
+					axios.get('add_to_cart.php?id='+ product_id + '&name='+ prod_name)
+						.then((response) => {
+							console.log(response.data);
 					 
+						});
+
 				 }
 			</script>								
 
