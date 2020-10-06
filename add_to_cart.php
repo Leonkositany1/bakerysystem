@@ -1,18 +1,19 @@
 <?php
-
-    session_start(); 
+ 
+    require("includes/session_check.php");   
     require("includes/db_conn.php");
     $product_id = $_GET['id']; 
-    
+    $user = $_SESSION['baker_login'];
     // $sql = "SELECT  * FROM users;";
-   $sql = "SELECT  * FROM order_items WHERE is_paid = 0 AND product_id = $product_id;";
- 
+    $sql = "SELECT  * FROM order_items WHERE is_paid = 0 AND product_id = $product_id AND user_email = '$user';";
+    
     $result = $conn->query($sql);
     $row1 = $result->fetch_array(MYSQLI_ASSOC);
     
+    
     $count = is_array($row1) ?  count($row1) : 0;
  
-    $sql = "SELECT  * FROM orders WHERE is_paid=0 LIMIT 1;";
+    $sql = "SELECT  * FROM orders WHERE is_paid=0  AND user_email = '$user' LIMIT 1;";
     $result = $conn->query($sql);
     $row2 = $result->fetch_array(MYSQLI_ASSOC);   
     $count2 = is_array($row2) ?  count($row2) : 0;
@@ -32,13 +33,13 @@
 
       }else{
 
-        $sql .= "INSERT INTO `order_items`(`cart_id`,`product_name`, `product_id`, `price`, `qty`) SELECT '$cart_id',`name`,`id`,`price`, 1 FROM products WHERE `id`='$product_id';";
+        $sql .= "INSERT INTO `order_items`(`user_email`,`cart_id`,`product_name`, `product_id`, `price`, `qty`) SELECT '$user','$cart_id',`name`,`id`,`price`, 1 FROM products WHERE `id`='$product_id';";
 
       }
 
    }else{
 
-    $sql .= "INSERT INTO `order_items`(`product_name`, `product_id`, `price`, `qty`) SELECT `name`,`id`,`price`,1 FROM products WHERE `id`='$product_id';";
+    $sql .= "INSERT INTO `order_items`(`user_email`,`product_name`, `product_id`, `price`, `qty`) SELECT '$user',`name`,`id`,`price`,1 FROM products WHERE `id`='$product_id';";
 
    }
 

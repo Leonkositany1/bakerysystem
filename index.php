@@ -5,13 +5,12 @@
 				<div class="container">
 					<div class="row fullscreen d-flex justify-content-center align-items-center">
 						<div class="banner-content col-lg-10 col-md-12 justify-content-center">
-							<h6 class="text-uppercase">Whenever we bake, bake with our heart</h6>
+							<h6 class="text-uppercase">Whenever we bake, we bake with our heart</h6>
 							<h1>
 								Love with baking items			
 							</h1>
 							<p class="text-white mx-auto">
-								Since Americans in the South began roasting pigs publicly, Barbecues have been a staple of North American living. For many, grilling becomes a routine mealtime activity.
-							</p>
+								Since we started baking,we have gotten a commited clientel,and our products have found a stedy supply chain
 							<a href="#" class="primary-btn squire text-uppercase mt-10">Check Our Menu</a>
 						</div>											
 					</div>
