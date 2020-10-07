@@ -39,15 +39,25 @@
 
    }else{
 
-    $sql .= "INSERT INTO `order_items`(`user_email`,`product_name`, `product_id`, `price`, `qty`) SELECT '$user',`name`,`id`,`price`,1 FROM products WHERE `id`='$product_id';";
+    if($count > 0){
+       
+      $order_item_id = $row1['id'];
+      $sql .= "UPDATE `order_items` SET `qty`  = `qty` + 1  WHERE `id`=$order_item_id;";
+
+    }else{
+
+      $sql .= "INSERT INTO `order_items`(`user_email`,`product_name`, `product_id`, `price`, `qty`) SELECT '$user',`name`,`id`,`price`,1 FROM products WHERE `id`='$product_id';";
+
+    }    
 
    }
 
-   if ($conn->query($sql) === TRUE) {
-    echo "New record created successfully";
-  } else {
-    echo "Error: " . $sql . "<br>" . $conn->error;
-  }
+    if ($conn->query($sql) === TRUE) {
+      echo  json_encode(['msg'=>'Product added to cart successfully','status'=> 'success']);
+    } else {
+      echo  json_encode(['msg'=>'Error adding product to cart','status'=> 'error']);
+    
+    }
     
 
     $result->free_result();
