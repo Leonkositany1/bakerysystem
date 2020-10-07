@@ -55,8 +55,7 @@
     if ($conn->query($sql) === TRUE) {
       echo  json_encode(['msg'=>'Product added to cart successfully','status'=> 'success']);
     } else {
-      echo  json_encode(['msg'=>'Error adding product to cart','status'=> 'error']);
-    
+      echo  json_encode(['msg'=>'Error adding product to cart','status'=> 'error']);    
     }
     
 

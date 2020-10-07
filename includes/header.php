@@ -71,7 +71,7 @@
 							  <li><a href="team.php">Team</a></li>						 		          	          
 							 						  			          	          
 							  <li><a href="contact.php">Contact</a></li>
-							  <li><a href="checkout.php"><i class="fas fa-shopping-cart fa-2x text-success"></i></a></li>
+							  <li><a href="checkout.php" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-shopping-cart fa-2x text-success"></i></a></li>
 							</ul>
 						</nav><!-- #nav-menu-container -->		
 			    	</div>
