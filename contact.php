@@ -19,16 +19,16 @@
 			<section class="contact-page-area section-gap">
 				<div class="container">
 					<div class="row">
-						<div class="map-wrap" style="width:100%; height: 445px;" id="map"></div>
+						<div class="map-wrap"  id="map"></div>
 						<div class="col-lg-4 d-flex flex-column address-wrap">
 							<div class="single-contact-address d-flex flex-row">
 								<div class="icon">
 									<span class="lnr lnr-home"></span>
 								</div>
 								<div class="contact-details">
-									<h5>Binghamton, New York</h5>
+									<h5>Westlands,Nairobi</h5>
 									<p>
-										4343 Hinkle Deegan Lake Road
+										10-30100 Nairobi
 									</p>
 								</div>
 							</div>
@@ -37,7 +37,7 @@
 									<span class="lnr lnr-phone-handset"></span>
 								</div>
 								<div class="contact-details">
-									<h5>00 (958) 9865 562</h5>
+									<h5>+25496035470</h5>
 									<p>Mon to Fri 9am to 6 pm</p>
 								</div>
 							</div>
@@ -46,7 +46,7 @@
 									<span class="lnr lnr-envelope"></span>
 								</div>
 								<div class="contact-details">
-									<h5>support@colorlib.com</h5>
+									<h5>leonkositany1@gmail.com</h5>
 									<p>Send us your query anytime!</p>
 								</div>
 							</div>														
@@ -74,6 +74,8 @@
 					</div>
 				</div>	
 			</section>
+
+			<?php require('includes/footer.php');?>
 			<!-- End contact-page Area -->
 
 		

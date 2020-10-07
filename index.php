@@ -352,4 +352,6 @@
 			</section>
 			<!-- end blog Area -->					
 			<?php  require('includes/footer.php') ?>
+
+			
 		

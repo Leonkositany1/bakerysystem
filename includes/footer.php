@@ -1,4 +1,41 @@
-	<!-- start footer Area -->		
+ 
+
+			<!-- <button id="minus_btn">Minus</button> -->
+			<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Your Cart</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+				<table class="table table-bordered">
+					<thead>
+						<tr>
+						<th scope="col">#</th>
+						<th scope="col">Name</th>
+						<th scope="col">Rate</th>
+						<th scope="col">Quatinty</th>
+						<th>Cost</th>
+						<th><a onclick="masterUpdate('minusall')"><i class="fas fa-minus text-danger"></i></a></th>
+						<th><a onclick="masterUpdate('addall')"><i class="fas fa-plus text-success"></i></a></th>
+						<th><a onclick="masterUpdate('deleteall')"><i class="fas fa-trash text-danger"></i></a></th>
+
+						</tr>
+					</thead>
+					<tbody id="cart_items">	 
+						 
+					</tbody>
+					</table>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>					 
+				</div>
+				</div>
+			</div>
+			</div>	
     <footer class="footer-area section-gap">
 				<div class="container">
 					<div class="row">
@@ -65,17 +102,86 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 			<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" integrity="sha512-vKMx8UnXk60zUwyUnUPM3HbQo8QfmNx7+ltw8Pm5zLusl1XIfwcxo8DbWCqMGKaWeNxWA8yrx5v3SaVpMvR3CA==" crossorigin="anonymous" />
 			<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous"></script>	
 			<script>
-				 function addToCart(product_id,prod_name){ 
+
+
+			 addToCart = (product_id,prod_name) => { 
 					axios.get('add_to_cart.php?id='+ product_id + '&name='+ prod_name)
 						.then((response) => {
+							showCart();
 							showToast(response.data.status, response.data.msg);
 					 
 						});
 
 				 }
-				 showToast = (status,msg) => { 
-				Command: toastr[status](msg)
 
+				 updateCart = (action,id) => { 
+					axios.get('manage_cart.php?item_id='+ id + '&action='+ action)
+						.then((response) => {
+							 
+							showCart();
+							showToast(response.data.status, response.data.msg);
+					 
+						});
+
+				 }
+
+			showCart = () => {
+				let container = document.getElementById('cart_items');
+				container.innerHTML = '';
+				axios.get('load_cart.php?get=1')
+						.then((response) => {
+							console.log(response.data);
+							if(response.data.items  !=0){
+								let data = response.data.items;
+								let count  = data.length;
+								let item ='';
+								 let total_amount = 0;
+								for (let i = 0; i < count; i++) {
+									let element = data[i];	
+									let c = i +1;		
+									total_amount += (element.price * element.qty);					 
+									    item += '<tr>';
+										item += '<td>'+ c + '</td>';
+										item += '<td>'+ element.product_name + '</td>';
+										item += '<td>'+ element.price + '</td>';
+										item += '<td>'+ element.qty + '</td>';
+										item += '<td>'+ element.price * element.qty + '</td>';
+
+										item += '<td><a onclick="minus('+ element.id +')"><i class="fas fa-minus text-danger"></i></a></td>'; 
+										item += '<td><a onclick="add('+ element.id +')"><i class="fas fa-plus text-success"></i></a></td>';
+										item += '<td><a onclick="deletei('+ element.id +')"><i class="fas fa-trash text-danger"></i></a></td>';
+										item += '</tr>';	
+								}
+								 item += '<td colspan="8" class="text-right"><b>Kes: '+ total_amount+'</b></td></tr>'
+								container.innerHTML = item;
+
+							}
+							//showToast(response.data.status, response.data.msg);
+					 
+				});
+			} 
+
+			$(function(){
+				showCart();			 
+			});
+
+			masterUpdate = (action) =>{				 
+				updateCart(action,'0');
+			}
+			add = (id) =>{
+				updateCart('add',id);
+			}
+
+			minus = (id) =>{
+				updateCart('minus',id);
+			}
+
+			deletei = (id) =>{
+				updateCart('delete',id);
+			}	 
+
+			showToast = (status,msg) => { 
+				Command: toastr[status](msg)
 					toastr.options = {
 					"closeButton": false,
 					"debug": false,
@@ -93,12 +199,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 					"showMethod": "fadeIn",
 					"hideMethod": "fadeOut"
 					}
-
 				 }
-
-			</script>		
-
-
-		
+			</script>				
 		</body>
 	</html>
