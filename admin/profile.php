@@ -1,5 +1,5 @@
 <?php 
-include("../includes/session_check.php");
+include("session_check.php");
 include("../includes/db_conn.php");
 
 $admin = mysqli_query($conn, "select * from admin");

@@ -1,5 +1,5 @@
 <?php 
-include("../includes/session_check.php");
+include("session_check.php");
 include("../includes/db_conn.php");
 
 // $orders = mysqli_query($conn, "SELECT products.name, products.price, products.created_at FROM products INNER JOIN orders ON orders.order_id=products.id");

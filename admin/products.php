@@ -1,6 +1,6 @@
 <?php 
 
-include("../includes/session_check.php");
+include("session_check.php");
 include("../includes/db_conn.php");
 
 $products = mysqli_query($conn, "select * from products");
