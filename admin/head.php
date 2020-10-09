@@ -1,10 +1,3 @@
-<?php 
-include("session_check.php");
-include("../includes/db_conn.php");
-
-$users = mysqli_query($conn, "select * from users");
-
-?>
 <!DOCTYPE html>
 <html>
 
@@ -76,59 +69,3 @@ $users = mysqli_query($conn, "select * from users");
         </div>
       </div>
     </div>
-    <!-- Page content -->
-    <div class="container-fluid mt--6">
-      <div class="row">
-        <div class="col">
-          <div class="card">
-            <!-- Card header -->
-            <div class="card-header border-0">
-
-              <h3 class="mb-0">Queries</h3>
-            </div>
-            <!-- Light table -->
-            <div class="table-responsive">
-              <table id="queries" class="display container table" style="width:100%">
-                <thead class="thead-light">
-                  <tr>
-                    <th scope="col" class="sort" data-sort="name">id</th>
-                    <th scope="col" class="sort" data-sort="budget">Email</th>
-                    <th scope="col" class="sort" data-sort="budget">Time</th>
-                  </tr>
-                </thead>
-                <tbody class="list">
-                <?php while($user=mysqli_fetch_assoc($users)){ ?>
-                  <tr>
-                    <td><?php echo $user['id'] ?></td>
-                    <td><?php echo $user['email'] ?></td>
-                    <td> <?php echo date("M dS Y |  H:i", strtotime( $user['time'])); ?></td>
-                  </tr>
-                  <?php } ?>
-                </tbody>
-              </table>
-            </div>
-            
-          </div>
-        </div>
-      </div>
-      <!-- Footer -->
-      <footer class="footer pt-0">
-        <div class="row align-items-center justify-content-lg-between">
-          <br>
-        </div>
-      </footer>
-    </div>
-  </div>
-  <!-- Argon Scripts -->
-  <!-- Core -->
-  <?php require('scripts.php');?>
-
-
-  <script>
-    $(document).ready(function() {
-      $('#queries').DataTable();
-  } );
-  </script>
-</body>
-
-</html>

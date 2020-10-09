@@ -3,80 +3,10 @@ include("session_check.php");
 include("../includes/db_conn.php");
 
 // $orders = mysqli_query($conn, "SELECT products.name, products.price, products.created_at FROM products INNER JOIN orders ON orders.order_id=products.id");
-$orders = mysqli_query($conn, "select * from orders"); 
+$orders = mysqli_query($conn, "SELECT orders.*,SUM(order_items.price * order_items.qty) as tot  FROM `orders` INNER JOIN order_items ON order_items.cart_id = orders.id GROUP BY orders.id;"); 
 
 ?>
-<!DOCTYPE html>
-<html>
-
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Eatery Bakers</title>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700">
-  <link rel="stylesheet" href="assets/vendor/nucleo/css/nucleo.css" type="text/css">
-  <link rel="stylesheet" href="assets/vendor/@fortawesome/fontawesome-free/css/all.min.css" type="text/css">
-  <link rel="stylesheet" href="assets/css/argon.css?v=1.2.0" type="text/css">
-  <link rel="stylesheet" href="DataTables/datatables.min.css" type="text/css">
-</head>
-
-<body>
-  <!-- Sidenav -->
-  <nav class="sidenav navbar navbar-vertical  fixed-left  navbar-expand-xs navbar-light bg-white" id="sidenav-main">
-    <div class="scrollbar-inner">
-      <!-- Brand -->
-      <div class="sidenav-header  align-items-center">
-        <br>
-        <h1>...</h1>
-      </div>
-      <div class="navbar-inner">
-        <!-- Collapse -->
-        <div class="collapse navbar-collapse" id="sidenav-collapse-main">
-          <!-- Nav items -->
-          <ul class="navbar-nav">
-            <li class="nav-item">
-              <a class="nav-link active" href="products.php">
-                <i class="fa fa-shopping-basket text-primary"></i>
-                <span class="nav-link-text">Products</span>
-              </a>
-              <br>
-              <a class="nav-link active" href="queries.php">
-                <i class="fa fa-info-circle text-primary"></i>
-                <span class="nav-link-text">Queries</span>
-              </a>
-              <br>
-              <a class="nav-link active" href="orders.php">
-                <i class="fa fa-shopping-cart text-primary"></i>
-                <span class="nav-link-text">Orders</span>
-              </a>
-              <br>
-              <a class="nav-link active" href="profile.php">
-                <i class="fa fa-user text-primary"></i>
-                <span class="nav-link-text">Profile</span>
-              </a>
-              <br>
-              <a class="nav-link active" href="users.php">
-                <i class="fa fa-users text-primary"></i>
-                <span class="nav-link-text">Users</span>
-              </a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </nav>
-  <!-- Main content -->
-  <div class="main-content" id="panel">
-    
-    <div class="header bg-primary pb-6">
-      <div class="container-fluid">
-        <div class="header-body">
-          <br>
-          <br>
-          <br>
-        </div>
-      </div>
-    </div>
+  <?php require('head.php');?>
     <!-- Page content -->
     <div class="container-fluid mt--6">
       <div class="row">
@@ -88,31 +18,40 @@ $orders = mysqli_query($conn, "select * from orders");
               <h3 class="mb-0">Orders</h3>
             </div>
             <!-- Light table -->
-            <div class="table-responsive">
-              <table id="orders" class="display container" style="width:100%">
-                <thead>
-                  <tr>
-                    <th scope="col" class="sort" data-sort="name">Name</th>
-                    <th scope="col" class="sort" data-sort="name">Product</th>
-                    <th scope="col" class="sort" data-sort="name">Price</th>
-                    <th scope="col" class="sort" data-sort="name">Location</th>
-                    <th scope="col" class="sort" data-sort="name">Phone</th>
-                  </tr>
-                </thead>
-                <tbody>
-                <?php while($order=mysqli_fetch_assoc($orders)){ ?>
-                  <tr>
-                    <td><?php echo $order['name'] ?></td>
-                    <td><?php echo $order['product'] ?></td>
-                    <td><?php echo $order['price'] ?></td>
-                    <td><?php echo $order['location'] ?></td>
-                    <td>0<?php echo $order['phone'] ?></td>
-                  </tr>
-                  <?php } ?>
-                </tbody>
-              </table>
-            </div>
-            
+            <div class="row">
+              <div class="table-responsive col-md-8">
+                <table id="orders" class="table">
+                  <thead>
+                    <tr>
+                      <th scope="col" class="sort" data-sort="name">Name</th>                     
+                      <th scope="col" class="sort" data-sort="name">Location</th>
+                      <th scope="col" class="sort" data-sort="name">Phone</th>
+                      <th scope="col" class="sort" data-sort="name">Price</th>
+                      <th scope="col" class="sort" data-sort="name">Status</th>                      
+                      <th scope="col" class="sort" data-sort="name">Show Items</th>
+                    </tr>
+                  </thead>
+                  <tbody>                
+                  <?php while($order=mysqli_fetch_assoc($orders)){ ?>
+                    <tr>
+                      <td><?php echo $order['name'] ?></td>                    
+                      <td><?php echo $order['location'] ?></td>
+                      <td>0<?php echo $order['phone'] ?></td>
+                      <td><?php echo 'Kes. '.$order['tot'] ?></td>
+                      <td><?php $msg = $order['is_paid'] == 0  ?   'Not Paid' :  'Paid'; echo $msg; ?></td>
+                      <td  ><button id="<?php echo $order['id'] ?>" class="btn btn-primary btn-sm showItems">Show</button></td>
+                    </tr>
+                    <?php } ?>
+                  </tbody>
+                </table>
+              </div>
+              <div class="col-md-4">
+                    <ol>
+                      <li>1</li>
+                    </ol>
+              </div>
+
+            </div>            
           </div>
         </div>
       </div>
@@ -125,22 +64,21 @@ $orders = mysqli_query($conn, "select * from orders");
     </div>
   </div>
   <!-- Argon Scripts -->
-  <!-- Core -->
-  <script src="assets/vendor/jquery/dist/jquery.min.js"></script>
-  <script src="assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/js-cookie/js.cookie.js"></script>
-  <script src="assets/vendor/jquery.scrollbar/jquery.scrollbar.min.js"></script>
-  <script src="assets/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js"></script>
-  <script type="text/javascript" src="DataTables/datatables.min.js"></script>
-  <!-- Optional JS -->
-  <script src="assets/vendor/chart.js/dist/Chart.min.js"></script>
-  <script src="assets/vendor/chart.js/dist/Chart.extension.js"></script>
-  <!-- Argon JS -->
-  <script src="assets/js/argon.js?v=1.2.0"></script>
+  <?php require('scripts.php');?> 
   <script>
     $(document).ready(function() {
       $('#orders').DataTable();
   } );
+
+
+    $('.showItems').on('click', function(){
+     
+      alert(this.id);
+      // $.get( "ajax/test.html", function( data ) {
+      //   $( ".result" ).html( data );
+      //   alert( "Load was performed." );
+      // });
+    })
   </script>
 </body>
 
