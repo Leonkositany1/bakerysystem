@@ -1,31 +1,31 @@
 <?php
-include("../connect.php");
-if (empty($_POST)) {
+// include("session_check.php");
+include("../includes/db_conn.php");
+if (empty($_GET)) {
+    echo "Not requested";
   exit();
 }
-$id=$_POST['id'];
+$id=$_GET['id'];
 
-$product = mysqli_query($dbconnect, "SELECT img FROM `products` WHERE `id`='$id'");
+$product = mysqli_query($conn, "SELECT img FROM `products` WHERE `id`='$id'");
 $fetch_image=mysqli_fetch_assoc($product);
 $image=$fetch_image['img'];
-if (unlink("../uploads/$image")) {
-	$del = mysqli_query($dbconnect, "DELETE FROM `products` WHERE `id`='$id'");	
 
-    if ($del) {
-        $data['title'] = "Success";
-        $data['message'] = "Product deleted successfully";
-        $data['type'] = "success";
-    } else {
-        $data['title'] = "Error";
-        $data['message'] = "Unable to delete product, try again later";
-        $data['type'] = "error";
-    }
-}else {
-    $data['title'] = "Error";
-    $data['message'] = "An error occured, try again later : $image";
-    $data['type'] = "error";
+$data = array();
+$data['title'] = "Error";
+$data['message'] = "An error occured, try again later : $image";
+$data['type'] = "error";
+$del = mysqli_query($conn, "DELETE FROM `products` WHERE `id`='$id'");
+
+ $image = trim($image);
+	
+if($del)   
+{
+    $file_delete =  file_exists("../uploads/".$image) ?  unlink("../uploads/".$image) : false;
+    $data['title'] = "Success";
+    $data['message'] = "Product deleted successfully";
+    $data['type'] = "success";
+ 
 }
-
-header('Content-Type:Application/json');
-echo json_encode($data);
+    echo json_encode($data);
 ?>

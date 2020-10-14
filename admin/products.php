@@ -36,13 +36,13 @@ $products = mysqli_query($conn, "select * from products");
                 </thead>
                 <tbody class="list">
                 <?php $num = 1; while($product=mysqli_fetch_assoc($products)){ ?>
-                  <tr>
+                  <tr id="<?php echo $product['id'] ?>">
                     <td><?php echo $num; ?></td>
                     <td><?php echo $product['name'] ?></td>
                     <td>Ksh. <?php echo $product['price'] ?></td>
                     <td>
-                      <a href="editproduct.php?id=<?php echo $product['id'] ?>"><i class="far fa-edit" ></i></a>
-                      <a  href="#" onclick="deleteProduct('<?php echo $product['id'] ?>')"><i class="fas fa-trash-alt" ></i></a>
+                      <a href="editproduct.php?id=<?php echo $product['id'] ?>" class="btn btn-primary btn-sm"><i class="far fa-edit" ></i>Edit</a>
+                      <a  href="#" onclick="deleteProduct('<?php echo $product['id'] ?>')" class="btn btn-danger btn-sm del"><i class="fas fa-trash-alt" ></i>Delete</a>
                     </td>
                   </tr>
                   <?php $num++;} ?>
@@ -61,63 +61,43 @@ $products = mysqli_query($conn, "select * from products");
       </footer>
     </div>
   </div>
-   <?php require('scripts.php');?>
+   <?php require('scripts.php');?>  
+   
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" integrity="sha512-vKMx8UnXk60zUwyUnUPM3HbQo8QfmNx7+ltw8Pm5zLusl1XIfwcxo8DbWCqMGKaWeNxWA8yrx5v3SaVpMvR3CA==" crossorigin="anonymous" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous"></script>	
   <script>
     $(document).ready(function() {
       $('#products').DataTable();
   } );
   </script>
   <script>
-  function deleteProduct(id){
-    Swal.fire({
-      title: 'Are you sure?',
-      text: "You won't be able to revert this!",
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, delete it!'
-    }).then((result) => {
-      if (result.value) {
+
+  function deleteProduct(id){   
+
+    if (confirm('Are you sure you want to delete ? ')) {     
+      
         $.ajax({
-          type: "POST",
+          type: "GET",
           url: "delete_product.php",
           data:'id='+ id,
           success: function(data){
               var messageTitle = data.title;
-                var messageAlert = data.type;
-                  var messageText = data.message;
-
-                  if (messageAlert!=="error") {
-                    swal(
-                  messageTitle,
-                  messageText,
-                  messageAlert
-                ).then(function () {
-                  window.location.reload(true);
-              });
-
-                  }else{
-                    swal(
-                      messageTitle,
-                      messageText,
-                      messageAlert
-                    );
-
-                  }
+              var messageAlert = data.type;
+              var messageText = data.message;     
+              showToast("success","Product Deleted Succesfully");
+               $("#"+ id.trim()).remove();
           },
           error: function(jqXHR, exception) { 
-            swal("Oops", "We couldn't connect to the server!", "error");
+            
+             showToast("error","Error Deleting Product");
 					}
         });
-        // Swal.fire(
-        //   'Deleted!',
-        //   'Your file has been deleted.',
-        //   'success'
-        // )
+ 
       }
-    })
-  }
+ 
+   }
+   
+  
   </script>
 </body>
 

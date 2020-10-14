@@ -43,7 +43,7 @@
 							<div class="single-footer-widget">
 								<h6>About Us</h6>
 								<p>
-									If you own an Iphone, you’ve probably already worked out how much fun it is to use it to watch movies-it has that.
+								More than a restaurant, Eatery is a lifestyle and a social hub in the buzzing capital of Kenya. We are firm believers that dining is about so much more than food. We combine delivery services, quality products, and a sense of community to give you the full Eatery experience.
 								</p>							
 							</div>
 						</div>

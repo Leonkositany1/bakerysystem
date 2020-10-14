@@ -62,21 +62,22 @@ $result = $conn->query($sql);
                                 // echo "0 results";
                               }
                               $conn->close();
-                              ?>
-
-                                
-                                </tbody>
+                              ?>                                
+                            </tbody>
                             </table>
 
-                            <form>
+                            <form id="checkout_form">
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1">Email address</label>
-                                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-                                   
+                                    <label for="name">Name</label>
+                                    <input type="text" class="form-control" id="name" placeholder="Your Full Name">                                   
                                 </div>
                                 <div class="form-group">
-                                    <label for="exampleInputPassword1">Password</label>
-                                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                                    <label for="password">Password</label>
+                                    <input type="number" class="form-control" id="phone" placeholder="Phone Number" required>
+                                </div> 
+                                <div class="form-group">
+                                    <label for="location">Location</label>
+                                    <input type="location" class="form-control" id="location" placeholder="Your Location" required>
                                 </div> 
                                 <button type="submit" class="btn btn-primary">Confirm Order</button>
                             </form>
@@ -91,3 +92,26 @@ $result = $conn->query($sql);
 		 
 			<!-- End about-video Area -->							
 		 <?php  require('includes/footer.php'); ?>
+
+         <script>
+         
+            $("#checkout_form").on('submit', function(){
+                //         $.ajax({
+                //   type: "GET",
+                //   url: "delete_product.php",
+                //   data:'id='+ id,
+                //   success: function(data){
+                //       var messageTitle = data.title;
+                //       var messageAlert = data.type;
+                //       var messageText = data.message;     
+                //       showToast("success","Product Deleted Succesfully");
+                //        $("#"+ id.trim()).remove();
+                //   },
+                //   error: function(jqXHR, exception) { 
+                    
+                //      showToast("error","Error Deleting Product");
+                // 			}
+                // });
+                alert('Yes')
+            })
+         </script>

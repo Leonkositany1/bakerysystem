@@ -55,9 +55,10 @@ session_start();
       <div class="form-group">
         <label for="" class="text-white">Password</label>
         <input type="password" class="form-control" name="password" id="" required>         
-      </div>         
+      </div>      
+      <a class="float-left bg-info text-white mx-auto" href="sign_up.php">Create an Account</a>   
       <button class="btn btn-primary float-right" type="submit" name="submit">Sign In</button>      
-    </form>
+    </form> 
     </div>
 
 

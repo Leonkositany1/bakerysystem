@@ -51,6 +51,11 @@
                 <i class="fa fa-users text-primary"></i>
                 <span class="nav-link-text">Users</span>
               </a>
+              <br>
+              <a class="nav-link active" href="logout.php">
+                <i class="fa fa-sign-out text-primary"></i>
+                <span class="nav-link-text">Log Out</span>
+              </a>
             </li>
           </ul>
         </div>

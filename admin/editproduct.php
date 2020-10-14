@@ -5,7 +5,7 @@ include("../includes/db_conn.php");
 $id = $_GET['id'];
 
     if(isset($id)){
-        $select_product = mysqli_query($dbconnect, "SELECT * FROM `products` WHERE `id` = '$id'");
+        $select_product = mysqli_query($conn, "SELECT * FROM `products` WHERE `id` = '$id'");
         if(mysqli_num_rows($select_product) == 1){
             $products = mysqli_fetch_assoc($select_product);
             // print_r($products);
@@ -40,14 +40,14 @@ $id = $_GET['id'];
       if($uploadOk != 0){
         if(move_uploaded_file($_FILES["filetoupload"]["tmp_name"], $target_dir.$new_file_name)){
 
-          $name =mysqli_real_escape_string ($dbconnect,$_POST['name']);
-          $price =mysqli_real_escape_string ($dbconnect,$_POST['price']);
-          $id = mysqli_real_escape_string ($dbconnect,$_POST['id']);
+          $name =mysqli_real_escape_string ($conn,$_POST['name']);
+          $price =mysqli_real_escape_string ($conn,$_POST['price']);
+          $id = mysqli_real_escape_string ($conn,$_POST['id']);
           // $created_at =date("Y-m-d H:i:s",time());
           $error = '';
           $msg = '';
 
-          $update = mysqli_query($dbconnect,"UPDATE `products` SET `name`='$name', `price`='$price',`img`='$new_file_name' WHERE `id`='$id'");
+          $update = mysqli_query($conn,"UPDATE `products` SET `name`='$name', `price`='$price',`img`='$new_file_name' WHERE `id`='$id'");
           if($update){
               global $msg;
               $msg .="Updated Successfully";
